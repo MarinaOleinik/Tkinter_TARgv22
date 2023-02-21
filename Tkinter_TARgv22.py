@@ -29,11 +29,20 @@ def uus_aken(ind:int):
     uusaken=Toplevel()
     tabs=ttk.Notebook(uusaken)
     texts=["Esimene","Teine","Kolmas","Neljas"]
+    img=["pilt1.gif","pilt2.gif","pilt3.gif","pilt4.gif"]#----pilt
     tab=[]
+    cann=[]
     for i in range(len(texts)):
         tab.append("tab"+str(i)) #tab0,tab1,tab2,tab3
         tab[i]=Frame(tabs)
         tabs.add(tab[i],text=texts[i])
+        cann.append("cann"+str(i))
+        cann[i]=Canvas(tab[i],height=200,width=200,bg="gold")
+        img[i]=PhotoImage(file=img[i]).subsample(0.2,3)
+        cann[i].create_image(0,0,image=img[i],anchor=NW)#----pilt
+        
+        cann[i].pack()
+
     tabs.grid(row=0,column=0)
     tabs.select(ind)
     ind=tabs.index(tabs.select())
